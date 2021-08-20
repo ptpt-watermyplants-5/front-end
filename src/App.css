@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+.navBar {
+  position: fixed;
+  top: 0;  
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.plant-list-container {
+  width: 80%;
+  position: absolute;
+  top: 80px;
+}
+
+.plant-list {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.plant-card {
+  max-width: 25%;
+  min-width: 200px;
+}
+
+.plant-card img {
+  max-width: 100%;
+  object-fit: cover;
+}
