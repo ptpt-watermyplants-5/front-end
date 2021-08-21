@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialForm = {
     username: "",
@@ -7,10 +9,12 @@ const initialForm = {
 
 const Login = () => {
 
-    const [ formValues, setformValues ] = useState(initialForm)
+    const [ formValues, setFormValues ] = useState(initialForm)
+
+    const { push } = useHistory();
 
     const handleChange = (e) => {
-        setformValues({
+        setFormValues({
             ...formValues,
             [e.target.name]: e.target.value
         })
@@ -18,14 +22,22 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        axiosWithAuth().post('/login', formValues)
+            .then(res => {
+                console.log(res)
+                localStorage.setItem('token', res.data.token)
+                setFormValues(initialForm)
+                push('/myplants')
+            })
+            .catch(err => console.log(err))
     }
 
     return(
 
         <div>
 
-            <h2>Welcome to WaterMyPlants!</h2>
-            <h4>Please login to view your plants.</h4>
+            {/* <h2>Welcome to WaterMyPlants!</h2>
+            <h4>Please login to view your plants.</h4> */}
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
@@ -58,7 +70,7 @@ const Login = () => {
             <br />
 
             <h5>Not a Member?</h5>
-            <button>Sign up!</button>
+            <Link to="/signup">Sign Up!</Link>
 
         </div>
     )
