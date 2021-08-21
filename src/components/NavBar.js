@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
 
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+    }
+
     return(
         <div className="navBar">
 
-            <Link to="/">Login</Link>
+            <Link to="/">Home</Link>
+            <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/myplants">My Plants</Link>
+            <Link to="/" onClick={handleLogout}>Logout</Link>
 
         </div>
     )

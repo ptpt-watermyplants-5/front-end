@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom';
 import SignUp from './components/SignUp'
 import PlantList from './components/PlantList'
 import NavBar from './components/NavBar'
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <header className="App-header">
         <NavBar />
         
-        <Route exact path="/">
+        <Route path="/login">
           <Login />
         </Route>
 
@@ -20,9 +21,11 @@ function App() {
 
         </Route>
 
-        <Route path="/myplants">
-          <PlantList />
+        <PrivateRoute path="/myplants" component={PlantList} />
 
+        <Route exact path="/">
+            <h2>Welcome to WaterMyPlants!</h2>
+            <h4>Please login to view your plants.</h4>
         </Route>
       </header>
     </div>

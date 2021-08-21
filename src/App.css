@@ -40,9 +40,14 @@
 .navBar {
   position: fixed;
   top: 0;  
-  width: 100%;
+  width: 80%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
+}
+
+a {
+  margin-left: 20px;
+  color: white;
 }
 
 .plant-list-container {
