@@ -2,19 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
-
+    
     const handleLogout = () => {
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
+        document.location.reload();
+        window.location.href = '/';
     }
 
     return(
         <div className="navBar">
 
             <Link to="/">Home</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
+            { localStorage.getItem('token') ? undefined : <Link to="/login">Login</Link> }
+            { localStorage.getItem('token') ? undefined : <Link to="/signup">Sign Up</Link> }
             <Link to="/myplants">My Plants</Link>
-            <Link to="/" onClick={handleLogout}>Logout</Link>
+            { localStorage.getItem('token') ? <Link to="/" onClick={handleLogout}>Logout</Link> : undefined }
 
         </div>
     )

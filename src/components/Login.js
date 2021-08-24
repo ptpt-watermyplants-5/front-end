@@ -24,10 +24,10 @@ const Login = () => {
         e.preventDefault();
         axiosWithAuth().post('/login', formValues)
             .then(res => {
-                console.log(res)
                 localStorage.setItem('token', res.data.token)
                 setFormValues(initialForm)
                 push('/myplants')
+                document.location.reload();
             })
             .catch(err => console.log(err))
     }
