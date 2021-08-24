@@ -24,8 +24,8 @@ function App() {
         <PrivateRoute path="/myplants" component={PlantList} />
 
         <Route exact path="/">
-            <h2>Welcome to WaterMyPlants!</h2>
-            <h4>Please login to view your plants.</h4>
+            <h2 className="welcome-page">Welcome to WaterMyPlants!</h2>
+            <h4 className="welcome-page">Please login to view your plants.</h4>
         </Route>
       </header>
     </div>

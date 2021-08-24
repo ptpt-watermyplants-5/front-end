@@ -34,7 +34,7 @@ const Login = () => {
 
     return(
 
-        <div>
+        <div className="login-page">
 
             {/* <h2>Welcome to WaterMyPlants!</h2>
             <h4>Please login to view your plants.</h4> */}

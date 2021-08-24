@@ -38,16 +38,41 @@
 }
 
 .navBar {
+  box-shadow: 0 0 .5rem .01rem rgb(56, 255, 21);
+  border-radius: 0 0 .6rem .6rem;
   position: fixed;
+  padding: 1rem;
   top: 0;  
   width: 80%;
   display: flex;
   justify-content: flex-end;
 }
 
+.navBar a {
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
+}
+
 a {
   margin-left: 20px;
   color: white;
+}
+
+input {
+  background: none;
+  border-top: .5rem;
+  border-right: .5rem;
+  border-left: .5rem;
+  font-size: 1.25rem;
+  margin-left: 1rem;
+}
+
+input:focus {
+  color: rgba(255, 255, 255, 0.822);
+  outline: none;
+}
+
+.welcome-page {
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
 }
 
 .plant-list-container {
@@ -70,4 +95,52 @@ a {
 .plant-card img {
   max-width: 100%;
   object-fit: cover;
+}
+
+.login-page {
+  color: rgba(24, 163, 0, 0.822);
+  background: #16181d86;
+  border: .3rem solid rgba(0, 0, 0, 0.513);
+  border-radius: .51rem;
+  padding: 3rem
+}
+
+.login-page a {
+  color: white;
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.login-page button {
+  font-size: .8rem;
+  font-weight: 800;
+  background-color: rgba(24, 163, 0, 0.822);
+  border: .15rem dotted rgba(44, 209, 14, 0.87);
+  border-radius: 45%;
+  margin: 3rem auto 0;
+  padding: .8rem;
+}
+
+.register-page {
+  color: rgba(24, 163, 0, 0.822);
+  background: #16181d86;
+  border: .3rem solid rgba(0, 0, 0, 0.513);
+  border-radius: .51rem;
+  padding: 3rem
+}
+
+.register-page h2 {
+  color: white;
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
+}
+
+.register-page button {
+  font-size: .8rem;
+  font-weight: 800;
+  background-color: rgba(24, 163, 0, 0.822);
+  border: .15rem dotted rgba(44, 209, 14, 0.87);
+  border-radius: 45%;
+  margin: 3rem auto 0;
+  padding: .8rem;
 }

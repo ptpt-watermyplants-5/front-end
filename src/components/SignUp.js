@@ -34,7 +34,7 @@ const SignUp = () => {
 
     return(
 
-        <div>
+        <div className="register-page">
 
             <h2>Welcome to WaterMyPlants!</h2>
             <h4>Please register to create your account.</h4>
