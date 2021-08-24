@@ -13,9 +13,10 @@ const NavBar = () => {
         <div className="navBar">
 
             <Link to="/">Home</Link>
-            { localStorage.getItem('token') ? undefined : <Link to="/login">Login</Link> }
-            { localStorage.getItem('token') ? undefined : <Link to="/signup">Sign Up</Link> }
             <Link to="/myplants">My Plants</Link>
+            { localStorage.getItem('token') ? undefined : <Link to="/signup">Sign Up</Link> }
+            { localStorage.getItem('token') ? undefined : <span>or</span> }
+            { localStorage.getItem('token') ? undefined : <Link to="/login">Login</Link> }
             { localStorage.getItem('token') ? <Link to="/" onClick={handleLogout}>Logout</Link> : undefined }
 
         </div>
