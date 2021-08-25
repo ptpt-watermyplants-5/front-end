@@ -11,6 +11,7 @@ const initialForm = {
 const SignUp = () => {
 
     const [ formValues, setformValues ] = useState(initialForm)
+    const [ errors, setErrors ] = useState()
 
     const { push } = useHistory();
 
@@ -30,15 +31,17 @@ const SignUp = () => {
                 console.log("response", res)
                 push('/login')
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.message))
     }
 
     return(
 
-        <div>
+        <div className="register-page">
 
             <h2>Welcome to WaterMyPlants!</h2>
             <h4>Please register to create your account.</h4>
+            
+            {errors ? <p className="error">{errors}</p> : undefined}
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
