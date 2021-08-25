@@ -5,8 +5,10 @@ import SignUp from './components/SignUp'
 import PlantList from './components/PlantList'
 import NavBar from './components/NavBar'
 import PrivateRoute from './components/PrivateRoute';
+import PlantForm from './components/PlantForm';
 
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
@@ -21,7 +23,9 @@ function App() {
 
         </Route>
 
-        <PrivateRoute path="/myplants" component={PlantList} />
+        <PrivateRoute exact path="/:id/plants" component={PlantList} />
+
+        <PrivateRoute path="/:id/plants/add" component={PlantForm} />
 
         <Route exact path="/">
             <h2 className="welcome-page">Welcome to WaterMyPlants!</h2>

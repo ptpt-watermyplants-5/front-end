@@ -13,6 +13,7 @@ const NavBar = () => {
         <div className="navBar">
 
             <Link to="/">Home</Link>
+
             <Link to="/myplants">My Plants</Link>
             { localStorage.getItem('token') ? undefined : <Link to="/signup">Sign Up</Link> }
             { localStorage.getItem('token') ? undefined : <span>or</span> }
