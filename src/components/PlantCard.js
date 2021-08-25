@@ -4,6 +4,13 @@ import { deletePlant } from '../actions';
 
 const PlantCard = (props) => {
 
+    const { push } = props.push();
+
+    const handleEdit = (e) => {
+        e.preventDefault();
+
+        push(`/myplants/${props.uid}/plants/${props.id}`)
+    };
 
     return(
         <div className="plant-card">
@@ -16,7 +23,7 @@ const PlantCard = (props) => {
                 {`water every ${props.h20Frequency} days`}
             </div>
             <div className="plant-controls">
-                <button>Edit</button>
+                <button onClick={handleEdit}>Edit</button>
                 <button onClick={() => {props.deletePlant(props.id)}}>Delete</button>
 
             </div>

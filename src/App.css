@@ -138,6 +138,12 @@ h4.welcome-page {
   padding: .8rem;
 }
 
+.login-page button:hover {
+  cursor: pointer;
+  color: yellowgreen;
+  background-color: rgba(38, 200, 9, 0.822);
+}
+
 .register-page {
   color: rgba(24, 163, 0, 0.822);
   background: #16181d86;
@@ -164,6 +170,24 @@ h4.welcome-page {
   border-radius: 45%;
   margin: 3rem auto 0;
   padding: .8rem;
+}
+
+.edit-plant {
+  color: rgba(24, 163, 0, 0.822);
+  background: #16181d86;
+  border: .21rem solid rgba(0, 0, 0, 0.411);
+  border-radius: .51rem;
+  margin-top: 8rem;
+  padding: 3rem;
+}
+
+.add-plant {
+  color: rgba(24, 163, 0, 0.822);
+  background: #16181d86;
+  border: .21rem solid rgba(0, 0, 0, 0.411);
+  border-radius: .51rem;
+  margin-top: 8rem;
+  padding: 3rem;
 }
 
 p.error {

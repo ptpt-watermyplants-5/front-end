@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const initialForm = {
-    nickname: "",
-    species: "",
-    h20_frequency: "",
-    image_url: "(optional)",
-}
 
-const PlantForm = () => {
+const PlantFormEdit = (props) => {
+    const plantParam = useParams();
+    const pid = Number(plantParam.id);
     const uid = Number(document.location.pathname[10]);
+    const [plant] = props.plantsList.filter(plant => plant.id === pid)
+
+    const initialForm = {
+        nickname: plant.nickname,
+        species: plant.species,
+        h20_frequency: plant.h20Frequency,
+        image_url: plant.image,
+    }
 
     const [ formValues, setformValues ] = useState(initialForm)
 
     const { push } = useHistory();
+
 
     const handleChange = (e) => {
         setformValues({
@@ -25,20 +31,21 @@ const PlantForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formValues)
-        axiosWithAuth().post(`/user/${uid}/plants`, formValues)
+        
+        axiosWithAuth()
+            .put(`/user/${uid}/plants/${pid}`, formValues)
             .then(res => {
-                console.log(res)
+                console.log('res', res)
                 push(`/myplants/${uid}`)
             })
-            .catch(err => console.log(err.response))
+            .catch(err => console.log('err', err.response))
     }
 
     return(
 
-        <div className="add-plant">
+        <div className="edit-plant">
 
-            <h2>Let's Add A New Plant!</h2>
+            <h2>Let's Edit A New Plant!</h2>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="nickname">Nickname:</label>
@@ -87,11 +94,18 @@ const PlantForm = () => {
 
             
 
-                <button type="submit">Add</button>
+                <button type="submit">done</button>
                 
             </form>
         </div>
     )
 }
 
-export default PlantForm;
+const mapStateToProps = (state) => {
+
+    return({
+        plantsList: state.plantsList,
+    })
+}
+
+export default connect(mapStateToProps)(PlantFormEdit);

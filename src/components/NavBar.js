@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
-    
+
+    const mpl = `/myplants/${document.location.pathname[10]}`;
+
     const handleLogout = () => {
         localStorage.removeItem('token');
         document.location.reload();
@@ -14,7 +16,7 @@ const NavBar = () => {
 
             <Link to="/">Home</Link>
 
-            <Link to="/myplants">My Plants</Link>
+            <Link to={mpl}>My Plants</Link>
             { localStorage.getItem('token') ? undefined : <Link to="/signup">Sign Up</Link> }
             { localStorage.getItem('token') ? undefined : <span>or</span> }
             { localStorage.getItem('token') ? undefined : <Link to="/login">Login</Link> }
