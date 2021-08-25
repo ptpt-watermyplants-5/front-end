@@ -1,4 +1,5 @@
 import './App.css';
+import { connect } from 'react-redux';
 import Login from './components/Login';
 import { Route } from 'react-router-dom';
 import SignUp from './components/SignUp'
@@ -7,20 +8,24 @@ import NavBar from './components/NavBar'
 import PrivateRoute from './components/PrivateRoute';
 import PlantForm from './components/PlantForm';
 import PlantFormEdit from './components/PlantFormEdit';
+import LoadingPage from './components/LoadingPage';
+import { isFetching, setErrors, setLoggedIn } from './actions'
 
-function App() {
-  
+function App(props) {
+
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar />
+        <NavBar loggedIn={props.setLoggedIn} isValid={props.loggedIn} />
         
-        <Route path="/login">
-          <Login />
-        </Route>
+        <Route path="/login" component={ () => 
+          props.is_fetching === false || undefined
+          ? <Login isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} loggedIn={props.setLoggedIn} />
+          : <LoadingPage />
+        } />
 
         <Route path="/signup">
-          <SignUp />
+          <SignUp isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} />
 
         </Route>
 
@@ -38,4 +43,14 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return({
+      is_fetching: state.is_fetching,
+      plantsList: state.plantsList,
+      loggedIn: state.loggedIn,
+      uid: state.uid,
+      errors: state.errors,
+  })
+}
+
+export default connect(mapStateToProps,{isFetching, setErrors, setLoggedIn})(App);

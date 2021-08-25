@@ -1,26 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
+const NavBar = ({ loggedIn, isValid }) => {
 
     const mpl = `/myplants/${document.location.pathname[10]}`;
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        document.location.reload();
+        loggedIn(false)
         window.location.href = '/';
     }
-
+console.log(isValid)
     return(
         <div className="navBar">
 
             <Link to="/">Home</Link>
 
             <Link to={mpl}>My Plants</Link>
-            { localStorage.getItem('token') ? undefined : <Link to="/signup">Sign Up</Link> }
-            { localStorage.getItem('token') ? undefined : <span>or</span> }
-            { localStorage.getItem('token') ? undefined : <Link to="/login">Login</Link> }
-            { localStorage.getItem('token') ? <Link to="/" onClick={handleLogout}>Logout</Link> : undefined }
+            { isValid ? undefined : <Link to="/signup">Sign Up</Link> }
+            { isValid ? undefined : <span>or</span> }
+            { isValid ? undefined : <Link to="/login">Login</Link> }
+            { isValid ? <Link to="/" onClick={handleLogout}>Logout</Link> : undefined }
 
         </div>
     )

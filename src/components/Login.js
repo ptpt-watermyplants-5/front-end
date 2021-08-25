@@ -7,10 +7,9 @@ const initialForm = {
     password: "",
 }
 
-const Login = () => {
+const Login = ({ loggedIn, isFetching, showErrors, errors }) => {
 
     const [ formValues, setFormValues ] = useState(initialForm)
-    const [ errors, setErrors ] = useState()
 
     const { push } = useHistory();
 
@@ -20,19 +19,22 @@ const Login = () => {
             [e.target.name]: e.target.value
         })
     }
-
+console.log(errors)
     const handleSubmit = (e) => {
         e.preventDefault();
+        isFetching(true);
         axiosWithAuth().post('/auth/login', formValues)
             .then(res => {
+                loggedIn(true);
+                isFetching(false);
                 localStorage.setItem('token', res.data.token)
                 setFormValues(initialForm)
-
                 push(`/myplants/${res.data.user_id}`)
-                document.location.reload();
-
             })
-            .catch(err => setErrors(err.response.data.message))
+            .catch(err => {
+                errors(err.response.data.message);
+                isFetching(false)
+            })
     }
 
     return(
@@ -43,7 +45,7 @@ const Login = () => {
             <h4>Please login to view your plants.</h4> */}
             
             <form onSubmit={handleSubmit}>
-                {errors ? <p className="error">{errors}</p> : undefined}
+                {showErrors ? <p className="error">{showErrors}</p> : undefined}
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
@@ -80,5 +82,7 @@ const Login = () => {
     )
 
 }
+
+
 
 export default Login;
