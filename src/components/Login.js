@@ -10,6 +10,7 @@ const initialForm = {
 const Login = () => {
 
     const [ formValues, setFormValues ] = useState(initialForm)
+    const [ errors, setErrors ] = useState()
 
     const { push } = useHistory();
 
@@ -24,22 +25,23 @@ const Login = () => {
         e.preventDefault();
         axiosWithAuth().post('/login', formValues)
             .then(res => {
-                console.log(res)
                 localStorage.setItem('token', res.data.token)
                 setFormValues(initialForm)
-                push('/myplants')
+                push(`/myplants/${res.data.user_id}`)
+                document.location.reload();
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.message))
     }
 
     return(
 
-        <div>
+        <div className="login-page">
 
             {/* <h2>Welcome to WaterMyPlants!</h2>
             <h4>Please login to view your plants.</h4> */}
-
+            
             <form onSubmit={handleSubmit}>
+                {errors ? <p className="error">{errors}</p> : undefined}
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"

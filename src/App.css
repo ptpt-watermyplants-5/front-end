@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -38,16 +38,56 @@
 }
 
 .navBar {
+  box-shadow: 0 0 .5rem .01rem rgb(56, 255, 21);
+  border-radius: 0 0 .6rem .6rem;
   position: fixed;
+  padding: 1rem 1rem .5rem;
   top: 0;  
   width: 80%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
-a {
+.navBar a {
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
   margin-left: 20px;
   color: white;
+}
+
+.navBar a:nth-child(5) {
+  margin-left: 10px;
+}
+
+.navBar span {
+  color: rgba(255, 255, 255, 0.698);
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
+  font-size: .8rem;
+  position: relative;
+  top: .5rem;
+  padding: 10px 0 0 10px;
+}
+
+input {
+  background: none;
+  border-top: .5rem;
+  border-right: .5rem;
+  border-left: .5rem;
+  color: rgba(255, 255, 255, 0.822);
+  font-size: 1.25rem;
+  margin-left: 1rem;
+}
+
+input:focus {
+  color: rgba(255, 255, 255, 0.822);
+  outline: none;
+}
+
+.welcome-page {
+  margin-top: 10rem;
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
+}
+h4.welcome-page {
+  margin-top: 5rem;
 }
 
 .plant-list-container {
@@ -70,4 +110,92 @@ a {
 .plant-card img {
   max-width: 100%;
   object-fit: cover;
+}
+
+.login-page {
+  color: rgba(24, 163, 0, 0.822);
+  background: #16181d86;
+  border: .21rem solid rgba(0, 0, 0, 0.411);
+  border-radius: .51rem;
+  margin-top: 8rem;
+  padding: 7rem 7rem 3rem;
+}
+
+.login-page a {
+  color: white;
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.login-page button {
+  font-size: .8rem;
+  font-weight: 800;
+  background-color: rgba(24, 163, 0, 0.822);
+  border: .15rem dotted rgba(44, 209, 14, 0.87);
+  border-radius: 45%;
+  margin: 3rem auto 0;
+  padding: .8rem;
+}
+
+.register-page {
+  color: rgba(24, 163, 0, 0.822);
+  background: #16181d86;
+  border: .3rem solid rgba(0, 0, 0, 0.411);
+  border-radius: .51rem;
+  margin-top: 8rem;
+  padding: 3rem
+}
+
+.register-page h2 {
+  color: white;
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
+}
+
+.register-page h4 {
+  margin-bottom: 2rem;
+}
+
+.register-page button {
+  font-size: .8rem;
+  font-weight: 800;
+  background-color: rgba(24, 163, 0, 0.822);
+  border: .15rem dotted rgba(44, 209, 14, 0.87);
+  border-radius: 45%;
+  margin: 3rem auto 0;
+  padding: .8rem;
+}
+
+p.error {
+  color: rgba(165, 33, 0, 0.733);
+  text-shadow: 0 0 .8rem rgba(82, 2, 2, 0.774);
+  margin: 0 0 1.5rem;
+}
+
+@media (max-width: 700px) {
+  .navBar span{
+    position: relative;
+    top: 0rem;
+  }
+  .welcome-page{
+    margin-top: 7rem;
+  }
+  h4.welcome-page {
+    margin-top: 50px;
+  }
+  .login-page{
+    margin-top: 6rem;
+  }
+  .register-page{
+    margin-top: 6rem;
+  }
+}
+
+#username {
+  position: relative;
+  right: 10px;
+}
+#password {
+  position: relative;
+  right: 7px;
 }
