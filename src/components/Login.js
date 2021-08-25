@@ -22,12 +22,12 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axiosWithAuth().post('/login', formValues)
+        axiosWithAuth().post('/auth/login', formValues)
             .then(res => {
                 console.log(res)
                 localStorage.setItem('token', res.data.token)
                 setFormValues(initialForm)
-                push('/myplants')
+                push(`/${formValues.username}/plants`)
             })
             .catch(err => console.log(err))
     }

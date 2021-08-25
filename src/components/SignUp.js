@@ -5,7 +5,7 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 const initialForm = {
     username: "",
     password: "",
-    // phoneNumber: "",
+    phone_number: null,
 }
 
 const SignUp = () => {
@@ -23,10 +23,11 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        formValues.phone_number = parseInt(formValues.phone_number);
         console.log(formValues)
-        axiosWithAuth().post('/register', formValues)
+        axiosWithAuth().post('/auth/register', formValues)
             .then(res => {
-                console.log(res)
+                console.log("response", res)
                 push('/login')
             })
             .catch(err => console.log(err))
@@ -62,14 +63,14 @@ const SignUp = () => {
 
                 <br />
 
-                {/* <label htmlFor="phoneNumber">Phone:</label>
+                <label htmlFor="phone_number">Phone:</label>
                 <input
                     type="tel"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    value={formValues.phoneNumber}
+                    id="phone_number"
+                    name="phone_number"
+                    value={formValues.phone_number}
                     onChange={handleChange}
-                /> */}
+                />
 
                 <br/>
 
