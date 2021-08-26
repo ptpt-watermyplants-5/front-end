@@ -8,10 +8,9 @@ const initialForm = {
     phone_number: null,
 }
 
-const SignUp = () => {
+const SignUp = ({ isFetching, errors, showErrors }) => {
 
     const [ formValues, setformValues ] = useState(initialForm)
-    const [ errors, setErrors ] = useState()
 
     const { push } = useHistory();
 
@@ -24,14 +23,19 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        isFetching(true)
         formValues.phone_number = parseInt(formValues.phone_number);
         console.log(formValues)
         axiosWithAuth().post('/auth/register', formValues)
             .then(res => {
+                isFetching(false)
                 console.log("response", res)
                 push('/login')
             })
-            .catch(err => setErrors(err.response.data.message))
+            .catch(err => {
+                isFetching(false);
+                errors(err.response.data.message)
+            })
     }
 
     return(
@@ -41,7 +45,7 @@ const SignUp = () => {
             <h2>Welcome to WaterMyPlants!</h2>
             <h4>Please register to create your account.</h4>
             
-            {errors ? <p className="error">{errors}</p> : undefined}
+            {showErrors ? <p className="error">{showErrors}</p> : undefined}
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>

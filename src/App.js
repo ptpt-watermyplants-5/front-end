@@ -1,4 +1,5 @@
 import './App.css';
+import { connect } from 'react-redux';
 import Login from './components/Login';
 import { Route } from 'react-router-dom';
 import SignUp from './components/SignUp'
@@ -6,26 +7,38 @@ import PlantList from './components/PlantList'
 import NavBar from './components/NavBar'
 import PrivateRoute from './components/PrivateRoute';
 import PlantForm from './components/PlantForm';
+import PlantFormEdit from './components/PlantFormEdit';
+import LoadingPage from './components/LoadingPage';
+import { isFetching, setErrors, setLoggedIn } from './actions'
 
-function App() {
+function App(props) {
+
+  if (localStorage.getItem('token')) {
+    props.setLoggedIn(true);
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar />
+        <NavBar errors={props.setErrors} isValid={props.loggedIn} />
         
-        <Route path="/login">
-          <Login />
-        </Route>
+        <Route path="/login" component={ () => 
+          props.is_fetching === false || undefined
+          ? <Login isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} />
+          : <LoadingPage />
+        } />
 
-        <Route path="/signup">
-          <SignUp />
+        <Route path="/signup" component={() => 
+          props.is_fetching === false || undefined
+          ? <SignUp isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} />
+          : <LoadingPage />
+        } />
 
-        </Route>
 
-        <PrivateRoute exact path="/:id/plants" component={PlantList} />
+        <PrivateRoute exact path="/myplants/:id" component={PlantList} />
 
-        <PrivateRoute path="/:id/plants/add" component={PlantForm} />
+        <PrivateRoute exact path="/myplants/:id/plants" component={PlantForm} />
+        <PrivateRoute exact path="/myplants/:id/plants/:id" component={PlantFormEdit} />
 
         <Route exact path="/">
             <h2 className="welcome-page">Welcome to WaterMyPlants!</h2>
@@ -36,4 +49,13 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return({
+      loggedIn: state.loggedIn,
+      is_fetching: state.is_fetching,
+      plantsList: state.plantsList,
+      errors: state.errors,
+  })
+}
+
+export default connect(mapStateToProps,{isFetching, setErrors, setLoggedIn})(App);

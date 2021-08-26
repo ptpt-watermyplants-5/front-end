@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => {
-    
+const NavBar = ({ errors, isValid }) => {
+
+    const mpl = `/myplants/${localStorage.getItem('uid')}`;
+
     const handleLogout = () => {
         localStorage.removeItem('token');
-        document.location.reload();
-        window.location.href = '/';
+        localStorage.removeItem('uid')
+        document.location.href = '/';
+    }
+
+    const handleClick = (e) => {
+        errors(null);
     }
 
     return(
@@ -14,11 +20,11 @@ const NavBar = () => {
 
             <Link to="/">Home</Link>
 
-            <Link to="/myplants">My Plants</Link>
-            { localStorage.getItem('token') ? undefined : <Link to="/signup">Sign Up</Link> }
-            { localStorage.getItem('token') ? undefined : <span>or</span> }
-            { localStorage.getItem('token') ? undefined : <Link to="/login">Login</Link> }
-            { localStorage.getItem('token') ? <Link to="/" onClick={handleLogout}>Logout</Link> : undefined }
+            <Link to={mpl}>My Plants</Link>
+            { isValid ? undefined : <Link to="/signup" onClick={handleClick}>Sign Up</Link> }
+            { isValid ? undefined : <span>or</span> }
+            { isValid ? undefined : <Link to="/login" onClick={handleClick}>Login</Link> }
+            { isValid ? <Link to="/" onClick={handleLogout}>Logout</Link> : undefined }
 
         </div>
     )

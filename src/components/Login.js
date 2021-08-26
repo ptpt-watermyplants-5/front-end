@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialForm = {
@@ -7,12 +7,9 @@ const initialForm = {
     password: "",
 }
 
-const Login = () => {
+const Login = ({ loggedIn, isFetching, showErrors, errors, uid, setuid }) => {
 
     const [ formValues, setFormValues ] = useState(initialForm)
-    const [ errors, setErrors ] = useState()
-
-    const { push } = useHistory();
 
     const handleChange = (e) => {
         setFormValues({
@@ -23,16 +20,19 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        isFetching(true);
         axiosWithAuth().post('/auth/login', formValues)
             .then(res => {
-                localStorage.setItem('token', res.data.token)
-                setFormValues(initialForm)
-
-                push(`/myplants/${res.data.user_id}`)
-                document.location.reload();
-
+                isFetching(false);
+                localStorage.setItem('uid', res.data.user_id)
+                localStorage.setItem('token', res.data.token);
+                setFormValues(initialForm);
+                document.location.href = `/myplants/${res.data.user_id}`;
             })
-            .catch(err => setErrors(err.response.data.message))
+            .catch(err => {
+                isFetching(false);
+                errors(err.response.data.message)
+            })
     }
 
     return(
@@ -42,8 +42,8 @@ const Login = () => {
             {/* <h2>Welcome to WaterMyPlants!</h2>
             <h4>Please login to view your plants.</h4> */}
             
+                {showErrors ? <p className="error">{showErrors}</p> : undefined}
             <form onSubmit={handleSubmit}>
-                {errors ? <p className="error">{errors}</p> : undefined}
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
@@ -80,5 +80,7 @@ const Login = () => {
     )
 
 }
+
+
 
 export default Login;
