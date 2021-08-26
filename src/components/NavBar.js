@@ -23,6 +23,7 @@ const NavBar = ({ errors, isValid }) => {
             </div>
             <div>
             { isValid ? <Link to={`${mpl}/plants`}>Add Plant</Link> : undefined }
+            { isValid ? <span id='AE'>||</span> : undefined }
             { isValid ? <Link to="/" onClick={handleLogout}>Edit User</Link> : undefined }
             </div>
             <div>

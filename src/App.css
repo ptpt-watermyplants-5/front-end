@@ -209,6 +209,9 @@ p.error {
     position: relative;
     right: 0rem;
   }
+  #AE {
+    display: none;
+  }
 }
 @media (max-width: 700px) {
   .navBar span{
@@ -229,6 +232,9 @@ p.error {
   }
 }
 
+#AE {
+  font-size: 1.5rem;
+}
 #username {
   position: relative;
   right: 10px;
