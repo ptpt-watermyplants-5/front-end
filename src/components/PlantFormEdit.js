@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getPlants } from '../actions';
+import { editPlant } from '../actions';
 
 
 const PlantFormEdit = (props) => {
@@ -30,7 +30,8 @@ const PlantFormEdit = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        push(`/myplants${localStorage.getItem('uid')}`);
+        props.editPlant(pid, formValues);
+        push(`/myplants/${localStorage.getItem('uid')}`);
     }
 
     return(
@@ -100,4 +101,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps, {getPlants})(PlantFormEdit);
+export default connect(mapStateToProps, {editPlant})(PlantFormEdit);
