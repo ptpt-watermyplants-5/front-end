@@ -17,16 +17,19 @@ const NavBar = ({ errors, isValid }) => {
 
     return(
         <div className="navBar">
-
+            <div>
             <Link to="/">Home</Link>
-
             <Link to={mpl}>My Plants</Link>
             { isValid ? undefined : <Link to="/signup" onClick={handleClick}>Sign Up</Link> }
             { isValid ? undefined : <span>or</span> }
             { isValid ? undefined : <Link to="/login" onClick={handleClick}>Login</Link> }
             { isValid ? <Link to="/" onClick={handleLogout}>Logout</Link> : undefined }
+            </div>
+            <div>
             { isValid ? <Link to={`${mpl}/plants`}>Add Plant</Link> : undefined }
             { isValid ? <Link to="/" onClick={handleLogout}>Edit User</Link> : undefined }
+            </div>
+
 
         </div>
     )
