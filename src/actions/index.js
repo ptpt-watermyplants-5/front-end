@@ -5,6 +5,8 @@ export const GET_ERRORS = "GET_ERRORS";
 export const SET_LOGGEDIN = "SET_LOGGEDIN";
 export const GET_PLANTS = "GET_PLANTS";
 export const UPDATE_PLANTS = "UPDATE_PLANTS";
+export const UPDATE_USER = "UPDATE_USER";
+export const GET_USER = "GET_USER";
 
 export const deletePlant = (id) => {
     return({type:DELETE_PLANT, payload: id})
@@ -31,7 +33,7 @@ export const getPlants = () => (dispatch) => {
     .catch(err => {
         dispatch({type:GET_ERRORS, payload: err.response.data.message})
     })
-}
+};
 
 export const editPlant = (id, data) => (dispatch) => {
     const uid = localStorage.getItem('uid')
@@ -41,5 +43,25 @@ export const editPlant = (id, data) => (dispatch) => {
     })
     .catch(err => {
         dispatch({type:GET_ERRORS, payload: err.response.data.message})
+    })
+};
+
+export const getUser = (uid) => (dispatch) => {
+    axiosWithAuth().get(`/user/${uid}`)
+    .then(res => {
+        dispatch({type:GET_USER, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type:GET_ERRORS, payload: err.response.data.message})
+    })
+};
+
+export const editUser = (uid, data) => (dispatch) => {
+    axiosWithAuth().put(`/user/${uid}`, data)
+    .then(res => {
+        dispatch({type: UPDATE_USER, payload: res.data})
+    })
+    .catch(err => {
+        dispatch({type:GET_ERRORS, payload: err.response.message})
     })
 }

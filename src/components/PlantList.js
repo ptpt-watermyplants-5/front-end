@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import PlantCard from './PlantCard'
 
 const PlantList = (props) => {
+    const { plantsList } = props;
 
     const { id } = useParams();
 
@@ -13,7 +14,7 @@ const PlantList = (props) => {
 
             <div className="plant-list">
 
-                {props.plantsList.map(plant => {
+                {plantsList.map(plant => {
                     return(
                         <PlantCard
                             key={plant.plant_id}
