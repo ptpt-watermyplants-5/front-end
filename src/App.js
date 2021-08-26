@@ -45,7 +45,9 @@ const { getPlants, setLoggedIn, getUser } = props;
 
         <PrivateRoute exact path="/myplants/:id/plants" component={PlantForm} />
         <PrivateRoute exact path="/myplants/:uid/plants/:id" component={PlantFormEdit} />
-        <PrivateRoute exact path="/user/:id" component={UserFormEdit} />
+        <PrivateRoute exact path="/user/:id" component={() => {
+          return <UserFormEdit errors={props.errors} />
+        }} />
 
         <Route exact path="/">
             <h2 className="welcome-page">Welcome {props.loggedIn ? `${props.user.username},` : undefined} to WaterMyPlants!</h2>

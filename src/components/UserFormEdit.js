@@ -5,10 +5,11 @@ import { editUser } from '../actions';
 
 const UserFormEdit = (props) => {
 
-    const { user, editUser } = props;
+    const { user, editUser, errors } = props;
 
     const [ formValues, setformValues ] = useState({
         username: user.username,
+        password: undefined,
         phone_number: user.phone_number,
     })
 
@@ -34,6 +35,7 @@ const UserFormEdit = (props) => {
 
             <h2>Update Your User Info!</h2>
 
+            {errors !== null ? <p className="error">{errors}</p> : undefined}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="nickname">Username:</label>
                 <input
@@ -52,6 +54,17 @@ const UserFormEdit = (props) => {
                     id="phoneNumber"
                     name="phone_number"
                     value={formValues.phone_number}
+                    onChange={handleChange}
+                />
+                
+                <br />
+                
+                <label htmlFor="species">password:</label>
+                <input
+                    type="text"
+                    id="password"
+                    name="password"
+                    value={formValues.password}
                     onChange={handleChange}
                 />
 
