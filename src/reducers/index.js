@@ -1,4 +1,4 @@
-import { DELETE_PLANT, IS_FETCHING, GET_ERRORS, SET_LOGGEDIN } from '../actions'
+import { DELETE_PLANT, IS_FETCHING, GET_ERRORS, SET_LOGGEDIN, GET_UID } from '../actions'
 import {dummyPlants} from '../components/dummyPlants'
 
 export const initialState = {
@@ -33,6 +33,11 @@ export const reducer = (state = initialState, action) => {
             return({
                 ...state,
                 loggedIn: action.payload
+            })
+        case GET_UID:
+            return({
+                ...state,
+                uid: action.payload
             })
         default:
             return state

@@ -9,25 +9,27 @@ import PrivateRoute from './components/PrivateRoute';
 import PlantForm from './components/PlantForm';
 import PlantFormEdit from './components/PlantFormEdit';
 import LoadingPage from './components/LoadingPage';
-import { isFetching, setErrors, setLoggedIn } from './actions'
+import { isFetching, setErrors, setLoggedIn, getUid } from './actions'
 
 function App(props) {
 
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar loggedIn={props.setLoggedIn} isValid={props.loggedIn} />
+        <NavBar loggedIn={props.setLoggedIn} isValid={props.loggedIn} uid={props.uid} setuid={props.getUid} errors={props.setErrors} />
         
         <Route path="/login" component={ () => 
           props.is_fetching === false || undefined
-          ? <Login isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} loggedIn={props.setLoggedIn} />
+          ? <Login isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} loggedIn={props.setLoggedIn} setuid={props.getUid} />
           : <LoadingPage />
         } />
 
-        <Route path="/signup">
-          <SignUp isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} />
+        <Route path="/signup" component={() => 
+          props.is_fetching === false || undefined
+          ? <SignUp isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} />
+          : <LoadingPage />
+        } />
 
-        </Route>
 
         <PrivateRoute exact path="/myplants/:id" component={PlantList} />
 
@@ -53,4 +55,4 @@ const mapStateToProps = (state) => {
   })
 }
 
-export default connect(mapStateToProps,{isFetching, setErrors, setLoggedIn})(App);
+export default connect(mapStateToProps,{isFetching, setErrors, setLoggedIn, getUid})(App);

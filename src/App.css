@@ -172,6 +172,12 @@ h4.welcome-page {
   padding: .8rem;
 }
 
+.register-page button:hover {
+  cursor: pointer;
+  color: yellowgreen;
+  background-color: rgba(38, 200, 9, 0.822);
+}
+
 .edit-plant {
   color: rgba(24, 163, 0, 0.822);
   background: #16181d86;

@@ -7,7 +7,7 @@ const initialForm = {
     password: "",
 }
 
-const Login = ({ loggedIn, isFetching, showErrors, errors }) => {
+const Login = ({ loggedIn, isFetching, showErrors, errors, uid, setuid }) => {
 
     const [ formValues, setFormValues ] = useState(initialForm)
 
@@ -19,7 +19,7 @@ const Login = ({ loggedIn, isFetching, showErrors, errors }) => {
             [e.target.name]: e.target.value
         })
     }
-console.log(errors)
+
     const handleSubmit = (e) => {
         e.preventDefault();
         isFetching(true);
@@ -29,11 +29,12 @@ console.log(errors)
                 isFetching(false);
                 localStorage.setItem('token', res.data.token)
                 setFormValues(initialForm)
+                setuid(res.data.user_id)
                 push(`/myplants/${res.data.user_id}`)
             })
             .catch(err => {
-                errors(err.response.data.message);
-                isFetching(false)
+                isFetching(false);
+                errors(err.response.data.message)
             })
     }
 
@@ -44,8 +45,8 @@ console.log(errors)
             {/* <h2>Welcome to WaterMyPlants!</h2>
             <h4>Please login to view your plants.</h4> */}
             
-            <form onSubmit={handleSubmit}>
                 {showErrors ? <p className="error">{showErrors}</p> : undefined}
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"
