@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Login from './components/Login';
 import { Route } from 'react-router-dom';
@@ -13,10 +14,12 @@ import { isFetching, setErrors, setLoggedIn, getPlants } from './actions'
 
 function App(props) {
 
-  if (localStorage.getItem('token')) {
-    props.setLoggedIn(true);
-    props.getPlants(localStorage.getItem('uid'))
-  }
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      props.setLoggedIn(true);
+      props.getPlants(localStorage.getItem('uid'))
+    }
+  },[]);
 
   return (
     <div className="App">
