@@ -2,7 +2,6 @@ export const DELETE_PLANT = "DELETE_PLANT";
 export const IS_FETCHING = "IS_FETCHING";
 export const GET_ERRORS = "GET_ERRORS";
 export const SET_LOGGEDIN = "SET_LOGGEDIN";
-export const GET_UID = "GET_UID";
 
 export const deletePlant = (id) => {
     return({type:DELETE_PLANT, payload: id})
@@ -19,7 +18,3 @@ export const setErrors = (data) => {
 export const setLoggedIn = (data) => {
     return({type:SET_LOGGEDIN, payload: data})
 };
-
-export const getUid = (id) => {
-    return({type: GET_UID, payload: id})
-}

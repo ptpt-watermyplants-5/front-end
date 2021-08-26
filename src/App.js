@@ -9,18 +9,22 @@ import PrivateRoute from './components/PrivateRoute';
 import PlantForm from './components/PlantForm';
 import PlantFormEdit from './components/PlantFormEdit';
 import LoadingPage from './components/LoadingPage';
-import { isFetching, setErrors, setLoggedIn, getUid } from './actions'
+import { isFetching, setErrors, setLoggedIn } from './actions'
 
 function App(props) {
+
+  if (localStorage.getItem('token')) {
+    props.setLoggedIn(true);
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar loggedIn={props.setLoggedIn} isValid={props.loggedIn} uid={props.uid} setuid={props.getUid} errors={props.setErrors} />
+        <NavBar errors={props.setErrors} isValid={props.loggedIn} />
         
         <Route path="/login" component={ () => 
           props.is_fetching === false || undefined
-          ? <Login isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} loggedIn={props.setLoggedIn} setuid={props.getUid} />
+          ? <Login isFetching={props.isFetching} errors={props.setErrors} showErrors={props.errors} />
           : <LoadingPage />
         } />
 
@@ -47,12 +51,11 @@ function App(props) {
 
 const mapStateToProps = (state) => {
   return({
+      loggedIn: state.loggedIn,
       is_fetching: state.is_fetching,
       plantsList: state.plantsList,
-      loggedIn: state.loggedIn,
-      uid: state.uid,
       errors: state.errors,
   })
 }
 
-export default connect(mapStateToProps,{isFetching, setErrors, setLoggedIn, getUid})(App);
+export default connect(mapStateToProps,{isFetching, setErrors, setLoggedIn})(App);
