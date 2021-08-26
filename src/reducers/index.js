@@ -1,10 +1,9 @@
-import { DELETE_PLANT, IS_FETCHING, GET_ERRORS, SET_LOGGEDIN } from '../actions'
-import {dummyPlants} from '../components/dummyPlants'
+import { DELETE_PLANT, IS_FETCHING, GET_ERRORS, SET_LOGGEDIN, GET_PLANTS } from '../actions'
 
 export const initialState = {
 
     loggedIn: false,
-    plantsList: dummyPlants,
+    plantsList: [],
     is_fetching: false,
     errors: null,
 
@@ -32,6 +31,11 @@ export const reducer = (state = initialState, action) => {
             return({
                 ...state,
                 loggedIn: action.payload
+            });
+        case (GET_PLANTS):
+            return({
+                ...state,
+                plantsList: action.payload
             })
         default:
             return state

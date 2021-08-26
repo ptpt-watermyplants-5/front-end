@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { getPlants } from '../actions';
 
 
 const PlantFormEdit = (props) => {
     const plantParam = useParams();
     const pid = Number(plantParam.id);
-    const uid = Number(document.location.pathname[10]);
     const [plant] = props.plantsList.filter(plant => plant.id === pid)
 
     const initialForm = {
@@ -31,14 +30,7 @@ const PlantFormEdit = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        axiosWithAuth()
-            .put(`/user/${uid}/plants/${pid}`, formValues)
-            .then(res => {
-                console.log('res', res)
-                push(`/myplants/${uid}`)
-            })
-            .catch(err => console.log('err', err.response))
+        push(`/myplants${localStorage.getItem('uid')}`);
     }
 
     return(
@@ -108,4 +100,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps)(PlantFormEdit);
+export default connect(mapStateToProps, {getPlants})(PlantFormEdit);

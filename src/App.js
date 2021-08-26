@@ -9,12 +9,13 @@ import PrivateRoute from './components/PrivateRoute';
 import PlantForm from './components/PlantForm';
 import PlantFormEdit from './components/PlantFormEdit';
 import LoadingPage from './components/LoadingPage';
-import { isFetching, setErrors, setLoggedIn } from './actions'
+import { isFetching, setErrors, setLoggedIn, getPlants } from './actions'
 
 function App(props) {
 
   if (localStorage.getItem('token')) {
     props.setLoggedIn(true);
+    props.getPlants(localStorage.getItem('uid'))
   }
 
   return (
@@ -58,4 +59,4 @@ const mapStateToProps = (state) => {
   })
 }
 
-export default connect(mapStateToProps,{isFetching, setErrors, setLoggedIn})(App);
+export default connect(mapStateToProps,{isFetching, setErrors, setLoggedIn, getPlants})(App);

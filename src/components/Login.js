@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialForm = {
@@ -8,7 +8,7 @@ const initialForm = {
 }
 
 const Login = ({ loggedIn, isFetching, showErrors, errors, uid, setuid }) => {
-
+    const {push} = useHistory();
     const [ formValues, setFormValues ] = useState(initialForm)
 
     const handleChange = (e) => {
@@ -23,10 +23,10 @@ const Login = ({ loggedIn, isFetching, showErrors, errors, uid, setuid }) => {
         isFetching(true);
         axiosWithAuth().post('/auth/login', formValues)
             .then(res => {
-                isFetching(false);
                 localStorage.setItem('uid', res.data.user_id)
                 localStorage.setItem('token', res.data.token);
                 setFormValues(initialForm);
+                isFetching(false);
                 document.location.href = `/myplants/${res.data.user_id}`;
             })
             .catch(err => {
