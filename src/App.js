@@ -13,13 +13,13 @@ import LoadingPage from './components/LoadingPage';
 import { isFetching, setErrors, setLoggedIn, getPlants } from './actions'
 
 function App(props) {
-
+const { getPlants, setLoggedIn } = props;
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      props.setLoggedIn(true);
-      props.getPlants(localStorage.getItem('uid'))
+      setLoggedIn(true);
+      getPlants(localStorage.getItem('uid'))
     }
-  },[]);
+  }, [getPlants, setLoggedIn]);
 
   return (
     <div className="App">
