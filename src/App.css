@@ -49,6 +49,11 @@
   flex-wrap: wrap;
 }
 
+.navBar div:nth-child(2) {
+  position: relative;
+  right: 4rem;
+}
+
 .navBar a {
   text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
   margin: 0 10px;
@@ -199,6 +204,12 @@ p.error {
   margin: 0 0 1.5rem;
 }
 
+@media (max-width: 800px) {
+  .navBar div:nth-child(2) {
+    position: relative;
+    right: 0rem;
+  }
+}
 @media (max-width: 700px) {
   .navBar span{
     position: relative;
