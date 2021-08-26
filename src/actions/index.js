@@ -22,14 +22,11 @@ export const setLoggedIn = (data) => {
 };
 
 export const getPlants = (id) => (dispatch) => {
-    dispatch(() => {
         axiosWithAuth().get(`/user/${id}/plants`)
         .then(res => {
-            console.log('getPlants response: ', res.data.plants)
-            return({type:GET_PLANTS, payload: res.data.plants})
+            dispatch({type:GET_PLANTS, payload: res.data.plants})
         })
         .catch(err => {
             return({type:GET_ERRORS, payload: err.response})
         })
-    })
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialForm = {
@@ -8,7 +8,6 @@ const initialForm = {
 }
 
 const Login = ({ loggedIn, isFetching, showErrors, errors, uid, setuid }) => {
-    const {push} = useHistory();
     const [ formValues, setFormValues ] = useState(initialForm)
 
     const handleChange = (e) => {

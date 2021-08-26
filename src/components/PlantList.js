@@ -21,7 +21,7 @@ const PlantList = (props) => {
                             nickname={plant.nickname}
                             h20Frequency={plant.h20Frequency}
                             species={plant.species}
-                            image={plant.image}
+                            image={plant.image_url}
                             uid={id}
                             push={useHistory}
                         />
