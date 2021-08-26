@@ -7,13 +7,13 @@ import { getPlants } from '../actions';
 const PlantFormEdit = (props) => {
     const plantParam = useParams();
     const pid = Number(plantParam.id);
-    const [plant] = props.plantsList.filter(plant => plant.id === pid)
+    const [plant] = props.plantsList.filter(plant => plant.plant_id === pid)
 
     const initialForm = {
         nickname: plant.nickname,
         species: plant.species,
-        h20_frequency: plant.h20Frequency,
-        image_url: plant.image,
+        h20_frequency: plant.h20_frequency,
+        image_url: plant.image_url,
     }
 
     const [ formValues, setformValues ] = useState(initialForm)

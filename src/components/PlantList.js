@@ -16,8 +16,8 @@ const PlantList = (props) => {
                 {props.plantsList.map(plant => {
                     return(
                         <PlantCard
-                            key={plant.id}
-                            id={plant.id}
+                            key={plant.plant_id}
+                            id={plant.plant_id}
                             nickname={plant.nickname}
                             h20Frequency={plant.h20Frequency}
                             species={plant.species}
