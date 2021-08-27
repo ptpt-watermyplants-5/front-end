@@ -38,7 +38,7 @@ const PlantFormEdit = (props) => {
 
         <div className="edit-plant">
 
-            <img src={plant.image_url} alt="image"></img>
+            <img src={plant.image_url} alt=''></img>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="nickname">Nickname:</label>
