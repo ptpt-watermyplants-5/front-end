@@ -121,6 +121,7 @@ h4.welcome-page {
 .plant-card {
   /* max-width: 25%;
   min-width: 200px; */
+  font-size: 1.4rem;
   box-shadow: 0 0 .5rem .01rem rgb(56, 255, 21);
   border-radius: .6rem;
   padding: 1rem 1rem .5rem;
