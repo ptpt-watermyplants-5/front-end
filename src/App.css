@@ -45,17 +45,19 @@
   top: 0;  
   width: 80%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.navBar div:nth-child(2) {
+  position: relative;
+  right: 4rem;
 }
 
 .navBar a {
   text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
-  margin-left: 20px;
+  margin: 0 10px;
   color: white;
-}
-
-.navBar a:nth-child(5) {
-  margin-left: 10px;
 }
 
 .navBar span {
@@ -64,7 +66,7 @@
   font-size: .8rem;
   position: relative;
   top: .5rem;
-  padding: 10px 0 0 10px;
+  padding: 0;
 }
 
 input {
@@ -202,6 +204,15 @@ p.error {
   margin: 0 0 1.5rem;
 }
 
+@media (max-width: 800px) {
+  .navBar div:nth-child(2) {
+    position: relative;
+    right: 0rem;
+  }
+  #AE {
+    display: none;
+  }
+}
 @media (max-width: 700px) {
   .navBar span{
     position: relative;
@@ -221,6 +232,9 @@ p.error {
   }
 }
 
+#AE {
+  font-size: 1.5rem;
+}
 #username {
   position: relative;
   right: 10px;

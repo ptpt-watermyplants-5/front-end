@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { editPlant } from '../actions';
 
 
 const PlantFormEdit = (props) => {
     const plantParam = useParams();
     const pid = Number(plantParam.id);
-    const uid = Number(document.location.pathname[10]);
-    const [plant] = props.plantsList.filter(plant => plant.id === pid)
+    const [plant] = props.plantsList.filter(plant => plant.plant_id === pid)
 
     const initialForm = {
         nickname: plant.nickname,
         species: plant.species,
-        h20_frequency: plant.h20Frequency,
-        image_url: plant.image,
+        h20_frequency: plant.h20_frequency,
+        image_url: plant.image_url,
     }
 
     const [ formValues, setformValues ] = useState(initialForm)
@@ -31,14 +30,8 @@ const PlantFormEdit = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        axiosWithAuth()
-            .put(`/user/${uid}/plants/${pid}`, formValues)
-            .then(res => {
-                console.log('res', res)
-                push(`/myplants/${uid}`)
-            })
-            .catch(err => console.log('err', err.response))
+        props.editPlant(pid, formValues);
+        push(`/myplants/${localStorage.getItem('uid')}`);
     }
 
     return(
@@ -108,4 +101,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps)(PlantFormEdit);
+export default connect(mapStateToProps, {editPlant})(PlantFormEdit);

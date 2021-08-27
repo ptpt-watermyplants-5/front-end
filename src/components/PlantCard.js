@@ -20,7 +20,7 @@ const PlantCard = (props) => {
                 <br/>
                 {`Species: ${props.species}`}
                 <br/>
-                {`water every ${props.h20Frequency} days`}
+                {`h20: "${props.h20_frequency}"`}
             </div>
             <div className="plant-controls">
                 <button onClick={handleEdit}>Edit</button>
