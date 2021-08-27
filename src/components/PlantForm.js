@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 const initialForm = {
@@ -11,6 +11,10 @@ const initialForm = {
 
 const PlantForm = () => {
     const uid = Number(document.location.pathname[10]);
+
+    const params = useParams();
+
+    console.log("Params", params)
 
     const [ formValues, setformValues ] = useState(initialForm)
 

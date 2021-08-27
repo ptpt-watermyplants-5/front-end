@@ -8,8 +8,18 @@ export const UPDATE_PLANTS = "UPDATE_PLANTS";
 export const UPDATE_USER = "UPDATE_USER";
 export const GET_USER = "GET_USER";
 
-export const deletePlant = (id) => {
-    return({type:DELETE_PLANT, payload: id})
+export const deletePlant = (plantId) => (dispatch) => {
+    const uid = localStorage.getItem('uid')
+
+    axiosWithAuth().delete(`/user/${uid}/plants/${plantId}`)
+        .then(res => {
+
+            dispatch({type:DELETE_PLANT, payload: plantId})
+            document.location.href = `/myplants/${uid}`;
+        })
+        .catch(err => {
+            dispatch({type:GET_ERRORS, payload: err.response.data.message})
+        })
 };
 
 export const isFetching = (data) => {
