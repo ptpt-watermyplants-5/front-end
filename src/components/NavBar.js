@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 const NavBar = (props) => {
     const { errors, isValid, user } = props;
 
+    console.log(isValid)
+
     const mpl = `/myplants/${localStorage.getItem('uid')}`;
     const ul = `/user/${localStorage.getItem('uid')}`;
 
