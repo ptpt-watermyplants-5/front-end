@@ -7,6 +7,7 @@ export const GET_PLANTS = "GET_PLANTS";
 export const UPDATE_PLANTS = "UPDATE_PLANTS";
 export const UPDATE_USER = "UPDATE_USER";
 export const GET_USER = "GET_USER";
+export const ADD_PLANT = "ADD_PLANT";
 
 export const deletePlant = (plantId) => (dispatch) => {
     const uid = localStorage.getItem('uid')
@@ -74,4 +75,15 @@ export const editUser = (uid, data) => (dispatch) => {
     .catch(err => {
         dispatch({type:GET_ERRORS, payload: err.response.data.message})
     })
+}
+
+export const addPlant = (newPlant) => (dispatch) => {
+    const uid = localStorage.getItem('uid')
+    axiosWithAuth().post(`/user/${uid}/plants`, newPlant)
+        .then(res => {
+            dispatch({type: ADD_PLANT, payload: res.data.plants})
+        })
+        .catch(err => {
+            dispatch({type:GET_ERRORS, payload: err.response.data.message})
+        })
 }
