@@ -10,7 +10,7 @@ const PlantList = (props) => {
 
     return(
         <div className="plant-list-container">
-            My Plants
+            <header>My Plants</header>
 
             <div className="plant-list">
 

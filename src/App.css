@@ -51,9 +51,13 @@
 
 .navBar div:nth-child(2) {
   position: relative;
-  right: 4rem;
+  /* right: 0rem; */
 }
 
+.navBar-right {
+  display: flex;
+  align-content: center;
+}
 .navBar a {
   text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
   margin: 0 10px;
@@ -67,7 +71,9 @@
   position: relative;
   top: .5rem;
   padding: 0;
+  height: 20px;
 }
+
 
 input {
   background: none;
@@ -98,6 +104,14 @@ h4.welcome-page {
   top: 80px;
 }
 
+.plant-list-container header {
+  width: 33%;
+  margin: 0 auto 30px;
+  border-radius: 0 0 .6rem .6rem;
+  box-shadow: 0 .2rem .5rem .01rem rgb(56, 255, 21);
+  padding: 10px 0;
+}
+
 .plant-list {
   display: flex;
   justify-content: space-evenly;
@@ -111,10 +125,10 @@ h4.welcome-page {
   border-radius: .6rem;
   padding: 1rem 1rem .5rem;
   top: 0;  
-  max-width: 25%;
+  max-width: 21%;
   min-width: 200px;
   display: flex;
-  max-height: 500px;
+  max-height: 700px;
   justify-content: space-between;
   flex-wrap: wrap;
   flex-direction: column;
@@ -126,6 +140,20 @@ h4.welcome-page {
   max-width: 100%;
   object-fit: cover;
   height: 60%;
+}
+
+.plant-controls {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.plant-controls button {
+  font-size: .8rem;
+  font-weight: 800;
+  background-color: rgba(24, 163, 0, 0.822);
+  border: .15rem dotted rgba(44, 209, 14, 0.87);
+  border-radius: 45%;
+  padding: .8rem;
 }
 
 .login-page {

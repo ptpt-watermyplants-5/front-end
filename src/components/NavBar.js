@@ -30,7 +30,7 @@ const NavBar = (props) => {
             { isValid ? <span id='AE'>||</span> : undefined }
             { isValid ? <Link to={`${ul}`}>Edit User</Link> : undefined }
             </div>
-            <div>
+            <div className="navBar-right">
             { isValid ? undefined : <Link to="/signup" onClick={handleClick}>Sign Up</Link> }
             { isValid ? undefined : <span>or</span> }
             { isValid ? undefined : <Link to="/login" onClick={handleClick}>Login</Link> }
