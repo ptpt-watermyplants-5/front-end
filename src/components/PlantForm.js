@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { addPlant } from '../actions';
+import { connect } from 'react-redux';
 
 const initialForm = {
     nickname: "",
@@ -9,12 +11,12 @@ const initialForm = {
     image_url: "(optional)",
 }
 
-const PlantForm = () => {
+const PlantForm = (props) => {
     const uid = Number(document.location.pathname[10]);
 
     const params = useParams();
 
-    console.log("Params", params)
+    // console.log("Params", params)
 
     const [ formValues, setformValues ] = useState(initialForm)
 
@@ -29,13 +31,8 @@ const PlantForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formValues)
-        axiosWithAuth().post(`/user/${uid}/plants`, formValues)
-            .then(res => {
-                console.log(res)
-                push(`/myplants/${uid}`)
-            })
-            .catch(err => console.log(err.response))
+        props.addPlant(formValues)
+        push(`/myplants/${uid}`)
     }
 
     return(
@@ -98,4 +95,4 @@ const PlantForm = () => {
     )
 }
 
-export default PlantForm;
+export default connect(null, {addPlant})(PlantForm);

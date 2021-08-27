@@ -1,4 +1,4 @@
-import { DELETE_PLANT, IS_FETCHING, GET_ERRORS, SET_LOGGEDIN, GET_PLANTS, UPDATE_PLANTS, GET_USER, UPDATE_USER } from '../actions'
+import { DELETE_PLANT, IS_FETCHING, GET_ERRORS, SET_LOGGEDIN, GET_PLANTS, UPDATE_PLANTS, GET_USER, UPDATE_USER, ADD_PLANT } from '../actions'
 
 export const initialState = {
 
@@ -52,6 +52,11 @@ export const reducer = (state = initialState, action) => {
             return({
                 ...state,
                 user: action.payload
+            })
+        case ADD_PLANT:
+            return({
+                ...state,
+                plantsList: action.payload
             })
         default:
             return state
