@@ -51,7 +51,7 @@ const { getPlants, setLoggedIn, getUser } = props;
 
         <Route exact path="/">
             <h2 className="welcome-page">Welcome {props.loggedIn ? `${props.user.username},` : undefined} to WaterMyPlants!</h2>
-            <h4 className="welcome-page">Please login to view your plants.</h4>
+            { props.loggedIn ? undefined : <h4 className="welcome-page">Please login to view your plants.</h4>}
         </Route>
       </header>
     </div>
