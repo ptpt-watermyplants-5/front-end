@@ -28,7 +28,7 @@ const UserFormEdit = (props) => {
 
     return(
 
-        <div className="edit-plant">
+        <div className="edit-user">
 
             <h2>Update Your User Info!</h2>
 

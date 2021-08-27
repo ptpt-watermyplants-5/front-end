@@ -1,5 +1,11 @@
 .App {
-  text-align: center;
+  min-height: 100vh;
+}
+
+html body {
+  background-color: #282c34;
+  min-height: 100vh;
+  max-height: 100vh;
 }
 
 .App-logo {
@@ -13,9 +19,12 @@
   }
 }
 
+#root {
+  min-height: 100vh;
+}
+
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,6 +47,7 @@
 }
 
 .navBar {
+  background-color: #282c34;
   box-shadow: 0 0 .5rem .01rem rgb(56, 255, 21);
   border-radius: 0 0 .6rem .6rem;
   position: fixed;
@@ -100,13 +110,15 @@ h4.welcome-page {
 
 .plant-list-container {
   width: 80%;
-  position: absolute;
-  top: 80px;
+  height: 70vh;
 }
 
 .plant-list-container header {
+  color: white;
+  text-shadow: .1rem .07rem .3rem rgb(56, 255, 21);
+  text-align: center;
   width: 33%;
-  margin: 0 auto 30px;
+  margin: 3.5rem auto 30px;
   border-radius: 0 0 .6rem .6rem;
   box-shadow: 0 .2rem .5rem .01rem rgb(56, 255, 21);
   padding: 10px 0;
@@ -116,6 +128,7 @@ h4.welcome-page {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  min-height: 70vh;
 }
 
 .plant-card {
@@ -125,13 +138,14 @@ h4.welcome-page {
   box-shadow: 0 0 .5rem .01rem rgb(56, 255, 21);
   border-radius: .6rem;
   padding: 1rem 1rem .5rem;
+  margin: 0 0 1rem;
   top: 0;  
   max-width: 21%;
   min-width: 200px;
   display: flex;
-  max-height: 700px;
+  max-height: 50vh;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: column;
   /* text-shadow: .1rem .07rem .3rem rgb(255, 255, 255); */
   color: rgb(56, 255, 21);
@@ -155,6 +169,12 @@ h4.welcome-page {
   border: .15rem dotted rgba(44, 209, 14, 0.87);
   border-radius: 45%;
   padding: .8rem;
+}
+
+.plant-controls button:hover {
+  cursor: pointer;
+  color: yellowgreen;
+  background-color: rgba(38, 200, 9, 0.822);
 }
 
 .login-page {
@@ -224,12 +244,30 @@ h4.welcome-page {
 }
 
 .edit-plant {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
   color: rgba(24, 163, 0, 0.822);
   background: #16181d86;
   border: .21rem solid rgba(0, 0, 0, 0.411);
   border-radius: .51rem;
   margin-top: 8rem;
-  padding: 3rem;
+  padding: 2rem;
+  width: 30%;
+}
+
+.edit-plant img{
+  border: 1px solid red;
+  width: 75%;
+}
+
+.edit-user {
+  color: rgba(24, 163, 0, 0.822);
+  background: #16181d86;
+  border: .21rem solid rgba(0, 0, 0, 0.411);
+  border-radius: .51rem;
+  margin-top: 8rem;
+  padding: 2rem;
 }
 
 .add-plant {
@@ -248,6 +286,9 @@ p.error {
 }
 
 @media (max-width: 800px) {
+  .plant-list {
+    margin: 1rem 0 1rem;
+  }
   .navBar div:nth-child(2) {
     position: relative;
     right: 0rem;
@@ -256,7 +297,22 @@ p.error {
     display: none;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 770px) {
+  .plant-list-container header {
+    visibility: hidden;
+    margin: 2rem 0 0;
+  }
+  .plant-list {
+    margin: 1rem 0 1rem;
+  }
+  .navBar div:nth-child(2) {
+    position: relative;
+    right: 0rem;
+  }
+  #AE {
+    display: none;
+  }
+
   .navBar span{
     position: relative;
     top: 0rem;
