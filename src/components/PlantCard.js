@@ -1,14 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deletePlant } from '../actions';
+import { deletePlant, getPlants } from '../actions';
 
 const PlantCard = (props) => {
 
     const { push } = props.push();
 
+    const handleDelete = (e) => {
+        e.preventDefault();
+        props.deletePlant(props.id);
+        props.getPlants();
+    };
+
     const handleEdit = (e) => {
         e.preventDefault();
-
         push(`/myplants/${props.uid}/plants/${props.id}`)
     };
 
@@ -24,12 +29,11 @@ const PlantCard = (props) => {
             </div>
             <div className="plant-controls">
                 <button onClick={handleEdit}>Edit</button>
-                <button onClick={() => {props.deletePlant(props.id)}}>Delete</button>
-
+                <button onClick={handleDelete}>Delete</button>
             </div>
 
         </div>
     )
 }
 
-export default connect(null, {deletePlant})(PlantCard);
+export default connect(null, {deletePlant, getPlants})(PlantCard);

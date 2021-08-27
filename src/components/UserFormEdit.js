@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { editUser } from '../actions';
 
@@ -9,12 +8,10 @@ const UserFormEdit = (props) => {
 
     const [ formValues, setformValues ] = useState({
         username: user.username,
-        password: undefined,
+        password: '',
+        password2: '',
         phone_number: user.phone_number,
     })
-
-    const { push } = useHistory();
-
 
     const handleChange = (e) => {
         setformValues({
@@ -25,8 +22,8 @@ const UserFormEdit = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        formValues.phone_number = Number(formValues.phone_number);
         editUser(user.user_id, formValues);
-        push(`/myplants/${user.user_id}`);
     }
 
     return(
@@ -61,10 +58,22 @@ const UserFormEdit = (props) => {
                 
                 <label htmlFor="species">password:</label>
                 <input
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     value={formValues.password}
+                    onChange={handleChange}
+                />
+                
+                <br />
+
+                <label htmlFor="species">newPassword:</label>
+                <input
+                    type="password"
+                    id="password2"
+                    name="password2"
+                    value={formValues.password2}
+                    placeholder="optional"
                     onChange={handleChange}
                 />
 

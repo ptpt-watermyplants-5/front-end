@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import { useHistory } from 'react-router-dom';
 import { addPlant } from '../actions';
 import { connect } from 'react-redux';
 
@@ -13,10 +12,6 @@ const initialForm = {
 
 const PlantForm = (props) => {
     const uid = Number(document.location.pathname[10]);
-
-    const params = useParams();
-
-    // console.log("Params", params)
 
     const [ formValues, setformValues ] = useState(initialForm)
 

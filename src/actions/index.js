@@ -14,9 +14,7 @@ export const deletePlant = (plantId) => (dispatch) => {
 
     axiosWithAuth().delete(`/user/${uid}/plants/${plantId}`)
         .then(res => {
-
             dispatch({type:DELETE_PLANT, payload: plantId})
-            document.location.href = `/myplants/${uid}`;
         })
         .catch(err => {
             dispatch({type:GET_ERRORS, payload: err.response.data.message})
@@ -67,10 +65,11 @@ export const getUser = (uid) => (dispatch) => {
     })
 };
 
-export const editUser = (uid, data) => (dispatch) => {
+export const editUser = (uid,data) => (dispatch) => {
     axiosWithAuth().put(`/user/${uid}`, data)
     .then(res => {
-        dispatch({type: UPDATE_USER, payload: res.data})
+        dispatch({type: UPDATE_USER, payload: res.data});
+        window.location.href = `/myplants/${uid}`;
     })
     .catch(err => {
         dispatch({type:GET_ERRORS, payload: err.response.data.message})
@@ -81,9 +80,11 @@ export const addPlant = (newPlant) => (dispatch) => {
     const uid = localStorage.getItem('uid')
     axiosWithAuth().post(`/user/${uid}/plants`, newPlant)
         .then(res => {
+            console.log('res')
             dispatch({type: ADD_PLANT, payload: res.data.plants})
         })
         .catch(err => {
-            dispatch({type:GET_ERRORS, payload: err.response.data.message})
+            console.log('err')
+            dispatch({type:GET_ERRORS, payload: err})
         })
 }
