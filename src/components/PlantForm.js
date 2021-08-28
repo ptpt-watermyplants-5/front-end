@@ -7,7 +7,7 @@ const initialForm = {
     nickname: "",
     species: "",
     h20_frequency: "",
-    image_url: "(optional)",
+    image_url: "",
 }
 
 const PlantForm = (props) => {
@@ -76,6 +76,7 @@ const PlantForm = (props) => {
                     id="image_url"
                     name="image_url"
                     value={formValues.image_url}
+                    placeholder="optional"
                     onChange={handleChange}
                 />
 

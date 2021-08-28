@@ -26,7 +26,7 @@ const { getPlants, setLoggedIn, getUser } = props;
   return (
     <div className="App">
       <header className="App-header">
-        <NavBar errors={props.setErrors} isValid={props.loggedIn} user={props.user.username} />
+        <NavBar errors={props.setErrors} loggedIn={setLoggedIn} isValid={props.loggedIn} user={props.user.username} />
         
         <Route path="/login" component={ () => 
           props.is_fetching === false || undefined

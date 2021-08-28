@@ -33,8 +33,7 @@ export const setLoggedIn = (data) => {
     return({type:SET_LOGGEDIN, payload: data})
 };
 
-export const getPlants = () => (dispatch) => {
-    const uid = localStorage.getItem('uid')
+export const getPlants = (uid) => (dispatch) => {
     axiosWithAuth().get(`/user/${uid}/plants`)
     .then(res => {
         dispatch({type:GET_PLANTS, payload: res.data.plants})
@@ -66,6 +65,7 @@ export const getUser = (uid) => (dispatch) => {
 };
 
 export const editUser = (uid,data) => (dispatch) => {
+    dispatch({type:GET_ERRORS, payload: null});
     axiosWithAuth().put(`/user/${uid}`, data)
     .then(res => {
         dispatch({type: UPDATE_USER, payload: res.data});
