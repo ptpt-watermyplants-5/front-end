@@ -318,6 +318,9 @@ p.error {
     position: relative;
     right: 0rem;
   }
+  .edit-plant {
+    width: 85%;
+  }
   #AE {
     display: none;
   }
