@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams, useHistory } from 'react-router-dom';
-import PlantCard from './PlantCard'
+import PlantCard from './PlantCard';
+import { getPlants, setLoggedIn, getUser } from '../actions';
 
 const PlantList = (props) => {
-    const { plantsList } = props;
+    const { plantsList, getPlants, setLoggedIn, getUser } = props;
 
     const { id } = useParams();
+
+    useEffect(() => {
+        setLoggedIn(true);
+        getUser(localStorage.getItem('uid'));
+        getPlants(localStorage.getItem('uid'));
+    },[getUser, setLoggedIn, getPlants])
 
     return(
         <div className="plant-list-container">
@@ -41,4 +48,4 @@ const mapStateToProps = (state) => {
     })
 }
 
-export default connect(mapStateToProps)(PlantList);
+export default connect(mapStateToProps, {getUser, getPlants, setLoggedIn})(PlantList);

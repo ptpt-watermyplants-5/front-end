@@ -1,16 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const NavBar = (props) => {
-    const { errors, isValid, user } = props;
+    const { errors, isValid, user, loggedIn } = props;
+
+    const { push } = useHistory();
 
     const mpl = `/myplants/${localStorage.getItem('uid')}`;
     const ul = `/user/${localStorage.getItem('uid')}`;
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('uid')
-        document.location.href = '/';
+        localStorage.removeItem('uid');
+        loggedIn(false);
+        push('/');
     }
 
     const handleClick = (e) => {
