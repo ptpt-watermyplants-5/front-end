@@ -129,7 +129,7 @@ h4.welcome-page {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  min-height: 70vh;
+  min-height: auto;
 }
 
 .plant-card {
@@ -138,18 +138,22 @@ h4.welcome-page {
   font-size: 1.4rem;
   box-shadow: 0 0 .5rem .01rem rgb(56, 255, 21);
   border-radius: .6rem;
-  padding: 1rem 1rem .5rem;
+  padding: 1rem;
   margin: 0 0 1rem;
   top: 0;  
   max-width: 21%;
   min-width: 200px;
   display: flex;
-  max-height: 50vh;
+  max-height: auto;
   justify-content: space-between;
   flex-wrap: nowrap;
   flex-direction: column;
   /* text-shadow: .1rem .07rem .3rem rgb(255, 255, 255); */
   color: rgb(56, 255, 21);
+}
+
+.plant-card div {
+  padding: 1rem 0;
 }
 
 .plant-card img {
@@ -305,6 +309,10 @@ p.error {
   }
   .plant-list {
     margin: 1rem 0 1rem;
+    height: auto;
+  }
+  .plant-card {
+    height: auto;
   }
   .navBar div:nth-child(2) {
     position: relative;
